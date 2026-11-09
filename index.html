@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173d2e">
+  <title>COPACI | Control Ciudadano</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="authPage" class="auth-page">
+    <div class="auth-container">
+      <section class="auth-info">
+        <div class="logo">
+          <span class="logo-cuadro">GG</span>
+          <div><strong>COPACI</strong><small>Granjas Guadalupe</small></div>
+        </div>
+        <div class="auth-info-text">
+          <span class="etiqueta">CONTROL CIUDADANO</span>
+          <h1>Tu comunidad,<br>más cerca.</h1>
+          <p>Realiza trámites comunitarios, reporta fallas en los servicios públicos y consulta el seguimiento de tus solicitudes.</p>
+          <div class="auth-features">
+            <span>✓ Solicitudes de constancias</span>
+            <span>✓ Reportes de luminarias y bacheo</span>
+            <span>✓ Seguimiento de tus solicitudes</span>
+          </div>
+        </div>
+        <div class="auth-decoration">
+          <div class="circle circle1"></div><div class="circle circle2"></div>
+          <div class="building building1"></div><div class="building building2"></div><div class="building building3"></div>
+        </div>
+      </section>
+
+      <section class="auth-form-container">
+        <div id="loginForm" class="form-box">
+          <div class="form-header">
+            <span class="form-icon">🔐</span>
+            <h2>Bienvenido</h2>
+            <p>Inicia sesión para continuar</p>
+          </div>
+          <form id="formLogin">
+            <label for="loginEmail">Correo electrónico</label>
+            <input type="email" id="loginEmail" placeholder="ejemplo@correo.com" autocomplete="username" required>
+            <label for="loginPassword">Contraseña</label>
+            <input type="password" id="loginPassword" placeholder="Tu contraseña" autocomplete="current-password" required>
+            <div class="remember">
+              <label><input type="checkbox" id="rememberMe"> Recordarme</label>
+              <span class="muted-small">Acceso para vecinos y administración</span>
+            </div>
+            <button type="submit" class="btn-primary">Iniciar sesión</button>
+          </form>
+          <p class="form-switch">¿No tienes una cuenta? <button type="button" onclick="mostrarRegistro()">Crear cuenta</button></p>
+          <div class="demo-users">
+            <strong>Usuarios de demostración</strong>
+            <p><b>Administrador:</b> admin@copaci.com / 123456</p>
+            <p><b>Vecino:</b> vecino@copaci.com / 123456</p>
+          </div>
+        </div>
+
+        <div id="registerForm" class="form-box hidden">
+          <div class="form-header">
+            <span class="form-icon">👤</span>
+            <h2>Crear cuenta</h2>
+            <p>Regístrate como vecino de la comunidad</p>
+          </div>
+          <form id="formRegister">
+            <label for="registerName">Nombre completo</label>
+            <input type="text" id="registerName" placeholder="Tu nombre completo" minlength="3" maxlength="100" required>
+            <label for="registerAddress">Dirección / Calle</label>
+            <input type="text" id="registerAddress" placeholder="Calle, número y colonia" maxlength="180" required>
+            <label for="registerEmail">Correo electrónico</label>
+            <input type="email" id="registerEmail" placeholder="ejemplo@correo.com" autocomplete="email" required>
+            <label for="registerPassword">Contraseña</label>
+            <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" minlength="6" autocomplete="new-password" required>
+            <button type="submit" class="btn-primary">Crear cuenta</button>
+          </form>
+          <p class="form-switch">¿Ya tienes una cuenta? <button type="button" onclick="mostrarLogin()">Iniciar sesión</button></p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="dashboardPage" class="dashboard hidden">
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">
+          <span class="logo-cuadro">GG</span>
+          <div><strong>COPACI</strong><small>Granjas Guadalupe</small></div>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#avisos">Avisos</a>
+        <button type="button" onclick="cerrarSesion()" class="logout">Cerrar sesión</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="dashboard-hero" id="inicio">
+        <div>
+          <span class="etiqueta">PLATAFORMA DE CONTROL CIUDADANO</span>
+          <h1 id="welcomeMessage">Bienvenido</h1>
+          <p>Desde este panel puedes realizar solicitudes comunitarias y dar seguimiento a los servicios de tu colonia.</p>
+        </div>
+        <div class="user-card">
+          <div class="user-avatar">👤</div>
+          <div><strong id="userName">Usuario</strong><span id="userRole">Vecino</span></div>
+        </div>
+      </section>
+
+      <section class="section" id="servicios">
+        <div class="section-title">
+          <div><span class="etiqueta">SERVICIOS</span><h2>Opciones disponibles</h2></div>
+        </div>
+        <div class="cards" id="roleCards"></div>
+      </section>
+
+      <section class="section work-area" id="workArea">
+        <div id="viewContainer"></div>
+      </section>
+
+      <section class="section notices" id="avisos">
+        <div class="section-title">
+          <div><span class="etiqueta">ACTUALIDAD</span><h2>Avisos importantes</h2></div>
+        </div>
+        <div class="notice-list">
+          <article class="notice">
+            <div class="notice-date"><strong>!</strong><span>AVISO</span></div>
+            <div><span class="category">Comunidad</span><h3>Participación vecinal</h3><p>Utiliza esta plataforma para comunicar necesidades de servicios e infraestructura de tu comunidad.</p></div>
+          </article>
+          <article class="notice">
+            <div class="notice-date"><strong>✓</strong><span>COPACI</span></div>
+            <div><span class="category">Servicios</span><h3>Seguimiento de solicitudes</h3><p>Conserva tu folio para consultar el avance de tus trámites y reportes.</p></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div><strong>COPACI Granjas Guadalupe</strong><p>Portal de información y gestión para la comunidad.</p></div>
+      <div><strong>Sistema de Control Ciudadano</strong><p>© 2026 · Proyecto escolar versión 2.0</p></div>
+    </footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
